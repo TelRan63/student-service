@@ -19,7 +19,7 @@ export const findStudent = async (req, res) => {
             "status": 404,
             "error": "Not Found",
             "message": `Student with id ${req.params.id} not found`,
-            "path": req.params
+            "path": req.path
         });
     }
 }
