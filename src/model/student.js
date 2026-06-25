@@ -1,8 +1,17 @@
-export default class Student {
-    constructor(id, name, password) {
-        this.id = id;
-        this.name = name;
-        this.password = password;
-        this.scores = {};
+import {Schema, model} from 'mongoose';
+
+const studentSchema = new Schema({
+    _id: {type: Number, required: true},
+    name: {type: String, required: true},
+    password: {type: String, required: true},
+    scores: {
+        type: Map,
+        key: String,
+        of: Number,
+        default: {}
     }
-}
+})
+
+const Student = model('Student', studentSchema, 'college');
+
+export default Student;

@@ -1,6 +1,13 @@
 import * as repo from '../repository/studentRepository.js';
+import {findStudentById} from "../repository/studentRepository.js";
 
-export const addStudent = async (student) => repo.createStudent(student);
+export const addStudent = async ({id, name, password}) => {
+    if (await findStudentById(id)) {
+        return false;
+    }
+    await repo.createStudent({_id: id, name, password});
+    return true;
+}
 
 export const findStudent = async (id) => renameId(await repo.findStudentById(+id));
 
@@ -9,7 +16,7 @@ export const deleteStudent = async (id) => renameId(await repo.deleteStudent(+id
 
 export const updateStudent = async (id, data) => renameId(await repo.updateStudent(+id, data));
 
-export const addScore = async (id, exam, score) => repo.updateStudent(+id, {[`scores.${exam}`]: score} );
+export const addScore = async (id, exam, score) => repo.updateStudent(+id, {[`scores.${exam}`]: score});
 
 export const findStudentsByName = async (name) => (await repo.findStudentsByName(name)).map(renameId);
 
