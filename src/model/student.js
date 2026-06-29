@@ -16,6 +16,13 @@ const studentSchema = new Schema({
         transform: (doc, ret) => {
             ret.id = doc._id;
             delete ret._id;
+            delete ret.password;
+        }
+    },
+    toObject: {
+        transform: (doc, ret) => {
+            ret.id = doc._id;
+            delete ret._id
         }
     }
 })
