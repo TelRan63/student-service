@@ -11,7 +11,6 @@ export const addStudent = async ({id, name, password}) => {
 
 export const findStudent = async (id) => renameId(await repo.findStudentById(+id));
 
-
 export const deleteStudent = async (id) => renameId(await repo.deleteStudent(+id));
 
 export const updateStudent = async (id, data) => renameId(await repo.updateStudent(+id, data));
